@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>products</title>
+    <link rel="icon" href="media/logo-removebg-preview.png" type="image/png" />
+    <!-- cart style here  -->
+    <link rel="stylesheet" href="cssFile/new.css" />
+
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      .Product_Container {
+        max-width: 440px;
+        margin: 50px auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .productHeading h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .productDetails img {
+        max-width: 440px;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+
+      .productDetails h2 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .productDetails p {
+        font-size: 18px;
+        color: #555;
+      }
+
+      .sizeButtons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        background-color: white;
+      }
+
+      .sizeButtons button {
+        font-size: 16px;
+        cursor: pointer;
+        height: 30px;
+        width: 50px;
+        background-color: white;
+      }
+
+      .addToCartButton {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px;
+      }
+
+      .checkoutButton {
+        background-color: #008cba;
+        color: white;
+        border: none;
+        padding: 10px;
+      }
+
+      .sizeButtons img {
+        image-rendering: auto;
+        max-width: 80px;
+        height: auto;
+        border-radius: 8px;
+        margin-right: 5px;
+        cursor: pointer;
+      }
+      .cart-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 900;
+        /* width: 500px;
+        height: 500px; */
+        border-radius: 15px;
+      }
+      .cart-items {
+        margin-top: 20px;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .payment-form {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .card-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      .card-expiration,
+      .card-cvv {
+        flex: 1;
+      }
+
+      .submit-button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+      }
+      .paymentPopUp {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 900;
+        border-radius: 15px;
+      }
+      .sizeButton.active {
+        background-color: blue;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="Product_Container">
+      <div class="productHeading">
+        <h1>Product Details</h1>
+      </div>
+      <div class="productDetails" id="productDetails">
+        <!-- Product image will be dynamically inserted here -->
+      </div>
+      <div class="actionButtons">
+        <button class="addToCartButton" id="addToCartBtn">Add to Cart</button>
+        <button class="checkoutButton" id="showCartBtn">Show Cart</button>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Your products data
+        let products = {
+          products: [
+            {
+              id: 1,
+              name: "23/24 Real Madrid Home Kit",
+              image: "media/KitsHome.webp",
+              image2: "media/musthave/HomeFRONT.jpg",
+              image3: "media/musthave/HomeBack.webp",
+
+              price: "$60",
+            },
+            {
+              id: 2,
+              name: "23/24 Real Madrid Away Kit",
+              image: "media/KitsAway.webp",
+              image2: "media/musthave/AwayFront.webp",
+              image3: "media/musthave/belliBack.webp",
+              price: "$55.00",
+            },
+            {
+              id: 3,
+              name: "23/24 Real Madrid Third Kit",
+              image: "media/ThİRDKit.webp",
+              image2: "media/musthave/thirdFront.jpg",
+              image3: "media/musthave/belliBackTHird.webp",
+              price: "$75.00",
+            },
+            {
+              id: 4,
+              name: "23/24 Real Madrid Goalkeeper Kit",
+              image: "media/goalkeepersKits.webp",
+              image2: "media/musthave/goalkeeperFront.webp",
+              image3: "media/musthave/green.webp",
+              price: "$80.00",
+            },
+            {
+              id: 5,
+              name: "Men's Lightweight Outerwear Men's Quilted Jacket Blue",
+              image: "media/jacket.webp",
+              image2: "media/musthave/carvaJacketFront.webp",
+              image3: "media/musthave/caarvaBack.webp",
+              price: "$105.00",
+            },
+            {
+              id: 6,
+              name: "Sofshell Outerwear Men's Quilted Outerwear Jacket Black",
+              image: "media/ibra.webp",
+              image2: "media/musthave/ibraFront.webp",
+              image3: "media/musthave/ibraBack.webp",
+              price: "$65.00",
+            },
+            {
+              id: 7,
+              name: "Outerwear Men's Quilted Jacket Black",
+              image2: "media/musthave/coatFront.webp",
+              image3: "media/musthave/coatBack.webp",
+              image: "media/coat.webp",
+              price: "$150.00",
+            },
+          ],
+        };
+
+        // Cart data
+        let cart = [];
+
+        // Function to update the cart UI
+        function updateCartUI() {
+          let cartContainer = document.querySelector(".products");
+          cartContainer.innerHTML = "";
+
+          cart.forEach((cartItem) => {
+            let cartItemHTML = `
+              <div class="product">
+                <div>
+                  <img src="${product.image}" alt="${product.name}" width="80" height="auto" class="sizeImage" />
+                  <span>${cartItem.name}</span>
+                  <button class="removeFromCartBtn" data-product-id="${cartItem.id}">Remove</button>
+                </div>
+                <label class="price small">${cartItem.price}</label>
+              </div>
+            `;
+            cartContainer.innerHTML += cartItemHTML;
+          });
+
+          // Update cart subtotal
+          let subtotalContainer = document.querySelector(
+            ".checkout .details span:last-child"
+          );
+          let subtotal = cart.reduce(
+            (total, item) => total + parseFloat(item.price.replace("$", "")),
+            0
+          );
+          subtotalContainer.textContent = `$${subtotal.toFixed(2)}`;
+        }
+
+        // Find the product details based on the productId
+        let urlParams = new URLSearchParams(window.location.search);
+        let productId = urlParams.get("productId");
+        let product = products.products.find((p) => p.id == productId);
+
+        // Create HTML for displaying the product details
+        let productDetailsContainer = document.getElementById("productDetails");
+
+        if (productDetailsContainer && product) {
+          let productDetailsHTML = `
+            <img src="${product.image}" alt="${product.name}" width="440" height="440" id="mainImage" />
+            <div class="sizeButtons">
+              <img src="${product.image}" alt="${product.name}" width="80" height="auto" class="sizeImage" />
+              <img src="${product.image2}" alt="${product.name}" width="80" height="auto" class="sizeImage" />
+              <img src="${product.image3}" alt="${product.name}" width="80" height="auto" class="sizeImage" />
+              <button class="sizeButton" id="sizeLBtn">L</button>
+              <button class="sizeButton" id="sizeMBtn">M</button>
+              <button class="sizeButton" id="sizeSBtn">S</button>
+            </div>
+            <h2>${product.name}</h2>
+            <p>${product.price}</p>
+            <div class="cart-popup">
+              <div class="master-container" id="master-container" >
+                <div class="card cart">
+                  <label class="title">Your cart</label>
+                  <div class="products"></div>
+                </div>
+    
+                <div class="card coupons">
+                  <h2 class="title">Continue Shopping!!!!</h2>
+                  <a href="shop.html" target="_blank"><button>Continue Shopping</button></a>
+                </div>
+    
+                <div class="card checkout">
+                  <label class="title">Checkout</label>
+                  <div class="details">
+                    <span>Your cart subtotal:</span>
+                    <span>$0.00</span>
+                  </div>
+                  <div class="checkout--footer">
+                
+                    <button class="checkout-btn">Checkout</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="paymentPopUp">
+  <div class="payment-form">
+    <h2>Payment Details</h2>
+    <form>
+      <div class="form-group">
+        <label for="cardholder">Cardholder's Name</label>
+        <input type="text" id="cardholder" name="cardholder" required>
+      </div>
+
+      <div class="form-group">
+        <label for="cardnumber">Card Number</label>
+        <input type="text" id="cardnumber" name="cardnumber" required>
+      </div>
+
+      <div class="card-row">
+        <div class="form-group card-expiration">
+          <label for="expiration">Expiration Date</label>
+          <input type="text" id="expiration" name="expiration" placeholder="MM/YY" required>
+        </div>
+
+        <div class="form-group card-cvv">
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" name="cvv" required>
+        </div>
+      </div>
+
+      <button type="button" class="submit-button">Make Payment</button>
+    </form>
+  </div>
+</div>
+          `;
+          productDetailsContainer.innerHTML = productDetailsHTML;
+        } else {
+          console.error("Product details container or product not found.");
+        }
+
+        // Add event listener for "Show Cart" button
+        let showCartBtn = document.getElementById("showCartBtn");
+
+        showCartBtn.addEventListener("click", function () {
+          // Show the cart pop-up (toggle its visibility)
+          let cartPopup = document.querySelector(".cart-popup");
+          cartPopup.style.display =
+            cartPopup.style.display === "none" || cartPopup.style.display === ""
+              ? "block"
+              : "none";
+          if (cartPopup.style.display === "none") {
+            showCartBtn.innerHTML = "Show Cart";
+          } else {
+            showCartBtn.innerHTML = "close";
+          }
+        });
+
+        // Size button and main image click logic
+        let sizeButtons = document.querySelectorAll(".sizeImage");
+        sizeButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            let newImageSrc = button.src || product.image;
+            document.getElementById("mainImage").src = newImageSrc;
+          });
+        });
+
+        // Add to Cart button logic
+        let addToCartBtn = document.getElementById("addToCartBtn");
+        addToCartBtn.addEventListener("click", function () {
+          // Add the selected product to the cart immediately
+          cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+          });
+
+          // Update the cart UI
+          updateCartUI();
+
+          // You can choose to display a message or update UI to show the product is added
+          alert("Product added to cart!");
+        });
+
+        // Event delegation for Remove from Cart button
+        document.addEventListener("click", function (event) {
+          if (event.target.classList.contains("removeFromCartBtn")) {
+            // Find the product in the cart by ID
+            let productIdToRemove =
+              event.target.getAttribute("data-product-id");
+            let indexToRemove = cart.findIndex(
+              (item) => item.id == productIdToRemove
+            );
+
+            // Remove the product from the temporary cart
+            if (indexToRemove !== -1) {
+              cart.splice(indexToRemove, 1);
+              // Update the cart UI
+              updateCartUI();
+            }
+          }
+        });
+
+        // Checkout button logic
+        let checkoutBtn = document.querySelector(".checkout-btn");
+        checkoutBtn.addEventListener("click", function () {
+          let cartPopup = document.querySelector(".cart-popup");
+          cartPopup.style.display = "none";
+          showCartBtn.innerHTML = "Show Cart";
+          let paymentPopUp = document.querySelector(".paymentPopUp");
+          paymentPopUp.style.display = "block";
+        });
+        let mySubmitBtn = document.querySelector(".submit-button");
+        mySubmitBtn.addEventListener("click", function () {
+          let cardholderInput = document.getElementById("cardholder");
+          let cardnumberInput = document.getElementById("cardnumber");
+          let expirationInput = document.getElementById("expiration");
+          let cvvInput = document.getElementById("cvv");
+
+          if (
+            !validateInput(cardholderInput.value, "Cardholder's Name") ||
+            !validateInput(cardnumberInput.value, "Card Number") ||
+            !validateInput(expirationInput.value, "Expiration Date") ||
+            !validateInput(cvvInput.value, "CVV")
+          ) {
+            window.alert("Please fill in all required fields.");
+            return;
+          }
+
+          // If all inputs are valid, proceed with the payment
+          let paymentPopUp = document.querySelector(".paymentPopUp");
+          paymentPopUp.style.display = "none";
+
+          window.alert("Payment done");
+        });
+
+        function validateInput(value, fieldName) {
+          if (value.trim() === "") {
+            return false;
+          }
+          return true;
+        }
+        const sizeButtons2 = document.querySelectorAll(".sizeButton");
+
+        function handleSizeButtonClick() {
+          // Remove the 'active' class from all buttons
+          sizeButtons2.forEach((button) => {
+            button.classList.remove("active");
+          });
+
+          // Add the 'active' class to the clicked button
+          this.classList.add("active");
+        }
+
+        // Attach the click event listener to each button
+        sizeButtons2.forEach((button) => {
+          button.addEventListener("click", handleSizeButtonClick);
+        });
+      });
+    </script>
+  </body>
+</html>

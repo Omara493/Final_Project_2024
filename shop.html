@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="cssFile/shop.css" />
+    <link rel="icon" href="media/logo-removebg-preview.png" type="image/png">
+
+    <title>Official store</title>
+  </head>
+
+  <body>
+    <div class="banner">
+      <div class="navbar">
+        <img src="media/logo-removebg-preview.png" alt="" class="logo" />
+        <span class="LogoLine"></span>
+        <p class="logoLineSpan">Official store</p>
+
+        <ul>
+          <li><a href="#Kits_Container">Kits</a></li>
+          <li><a href="#musthave__container">Fashion</a></li>
+          <li><a href="#saleCon">Sale</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="content">
+        <h1>EXPLORE THE UNKNOWN</h1>
+        <p>Get your kit and be ready for the game</p>
+        <div>
+          <!-- <button class="signup-btn" type="button"><span class="cover"></span>SIGN UP</button> -->
+          <a href="#saleCon">
+            <button class="login-btn" type="button" id="login-btn">
+              <span class="cover"></span>Shop now
+            </button></a
+          >
+        </div>
+      </div>
+    </div>
+
+    <section class="section__container sale__container" id="saleCon">
+      <h2 class="section__title">On Sale</h2>
+      <div class="sale__grid">
+        <div class="sale__card">
+          <img src="media/jacket.webp" alt="sale" />
+          <div class="sale__content">
+            <p class="sale__subtitle">LightWeight MAN OUTERWEAR</p>
+            <h4 class="sale__title">sale <span>40%</span> off</h4>
+            <p class="sale__subtitle">- DON'T MISS -</p>
+            <button class="btn sale__btn" data-product-id="5">SHOP NOW</button>
+          </div>
+        </div>
+        <div class="sale__card">
+          <img src="media/ibra.webp" alt="sale" />
+          <div class="sale__content">
+            <p class="sale__subtitle">Men's Sofshell outwearT</p>
+            <h4 class="sale__title">sale <span>25%</span> off</h4>
+            <p class="sale__subtitle">- DON'T MISS -</p>
+            <button class="btn sale__btn" data-product-id="6">SHOP NOW</button>
+          </div>
+        </div>
+        <div class="sale__card">
+          <img src="media/coat.webp" alt="sale" />
+          <div class="sale__content">
+            <p class="sale__subtitle">Coat Long Parka</p>
+            <h4 class="sale__title">sale <span>20%</span> off</h4>
+            <p class="sale__subtitle">- DON'T MISS -</p>
+            <button class="btn sale__btn" data-product-id="7">SHOP NOW</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Inside  Kits section -->
+    <section class="Kits_Container" id="Kits_Container">
+      <div class="kitsHeading">
+        <h1>Kits</h1>
+      </div>
+      <div class="kits" id="theKits">
+        <ul>
+          <li>
+            <div class="imgWrapper">
+              <img src="media/KitsHome.webp" alt="" width="440" height="440" />
+              <div class="overlayCard">
+                <p class="kitPara">23/24 Real Madrid Home Kit</p>
+                <button class="shopNowButton" data-product-id="1">
+                  SHOP NOW
+                </button>
+              </div>
+            </div>
+          </li>
+          <!-- Repeat the structure for other products with appropriate IDs -->
+          <li>
+            <div class="imgWrapper">
+              <img src="media/KitsAway.webp" alt="" width="440" height="440" />
+              <div class="overlayCard">
+                <p class="kitPara">23/24 Real Madrid Away Kit</p>
+                <button class="shopNowButton" data-product-id="2">
+                  SHOP NOW
+                </button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="imgWrapper">
+              <img src="media/ThİRDKit.webp" alt="" width="440" height="440" />
+              <div class="overlayCard">
+                <p class="kitPara">23/24 Real Madrid Third Kit</p>
+                <button class="shopNowButton" data-product-id="3">
+                  SHOP NOW
+                </button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="imgWrapper">
+              <img
+                src="media/goalkeepersKits.webp"
+                alt=""
+                width="440"
+                height="440"
+              />
+              <div class="overlayCard">
+                <p class="kitPara">23/24 Real Madrid Goalkeeper Kit</p>
+                <button class="shopNowButton" data-product-id="4">
+                  SHOP NOW
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section__container musthave__container" id="musthave__container">
+      <h2 class="section__title">Must Have</h2>
+      <div class="musthave__nav">
+        <button
+          class="btn active"
+          onclick="filterSelection('all')"
+          data-filter="all"
+        >
+          Show all
+        </button>
+        <button
+          class="btn"
+          onclick="filterSelection('kits')"
+          data-filter="kits"
+        >
+          Kits
+        </button>
+        <button
+          class="btn"
+          onclick="filterSelection('onsale')"
+          data-filter="onsale"
+        >
+          On Sale
+        </button>
+        <button
+          class="btn"
+          onclick="filterSelection('fashion')"
+          data-filter="fashion"
+        >
+          Fashion
+        </button>
+      </div>
+      <div class="musthave__container2">
+        <div class="musthave__card kits">
+          <img src="media/musthave/awaykit.webp" alt="must have" />
+          <h4>Basic long sleeve T-shirt</h4>
+          <p>$75.00</p>
+        </div>
+        <div class="musthave__card kits">
+          <img src="media/musthave/blackkit.webp" alt="must have" />
+          <h4>Ribbed T-shirt with buttons</h4>
+          <p>$75.00</p>
+        </div>
+        <div class="musthave__card fashion">
+          <img src="media/musthave/fashionBasic.webp" alt="must have" />
+          <h4>Jacket withside strips</h4>
+          <p>$75.00</p>
+        </div>
+        <div class="musthave__card fashion">
+          <img src="media/musthave/fashionJaket.webp" alt="must have" />
+          <h4>High-heel tubular sandals</h4>
+          <p>$75.00</p>
+        </div>
+        <div class="musthave__card fashion">
+          <img src="media/musthave/fashionYellow.webp" alt="must have" />
+          <h4>Coral fabric belt bag</h4>
+          <p>$75.00</p>
+        </div>
+        <div class="musthave__card kits">
+          <img src="media/musthave/goalkeeper.webp" alt="must have" />
+          <h4>Piggy skater slogan T-shirt</h4>
+          <p><del>$45.00</del> $75.00</p>
+        </div>
+        <div class="musthave__card fashion">
+          <img src="media/musthave/green2.webp" alt="must have" />
+          <h4>White platform boots</h4>
+          <p>$75.00</p>
+        </div>
+        <div class="musthave__card kits">
+          <img src="media/musthave/homeShirt.webp" alt="must have" />
+          <h4>Sweater vest with sleeves</h4>
+          <p>$75.00</p>
+        </div>
+        <div class="musthave__card onsale">
+          <img src="media/musthave/onsale.webp" alt="must have" />
+          <h4>Slim fit pants</h4>
+          <p><del>$45.00</del> $75.00</p>
+        </div>
+        <div class="musthave__card onsale">
+          <img src="media/musthave/onsale2.webp" alt="must have" />
+          <h4>Gray backpack</h4>
+          <p><del>$45.00</del> $75.00</p>
+        </div>
+        <div class="musthave__card onsale">
+          <img src="media/musthave/onsale3.webp" alt="must have" />
+          <h4>Neon sweatshirt</h4>
+          <p><del>$45.00</del> $75.00</p>
+        </div>
+        <div class="musthave__card kits">
+          <img src="media/musthave/whitekit.webp" alt="must have" />
+          <h4>Hooded nautical jacket</h4>
+          <p>$75.00</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>Shop</h4>
+            <ul>
+              <li>
+                <a href="https://www.realmadrid.com/en-US/football"
+                >SHOP LOCATOR</a
+                      >
+                    </li>
+                    <li>
+                      <a href="https://www.realmadrid.com/en-US/football/first-team"
+                        >SHIPPING AND RETURNS</a
+                      >
+                    </li>
+                    <li>
+                      <a href="https://www.realmadrid.com/en-US/football/academy"
+                        >HOW TO ORDER</a
+                      >
+                    </li>
+                    <li>
+                      <a href="https://www.realmadrid.com/en-US/football/womens-team"
+                        >TRACK MY ORDER</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="footer-col">
+                  <h4>About</h4>
+                  <ul>
+                    <li>
+                      <a href="https://www.realmadrid.com/en-US/basketball/first-team"
+                        >PRIVACY POLICY</a
+                      >
+                    </li>                    <li>
+                      <a href="https://www.realmadrid.com/en-US/basketball/first-team"
+                        >COOKIE POLICY</a
+                      >
+                    </li>                    <li>
+                      <a href="https://www.realmadrid.com/en-US/basketball/first-team"
+                        >TERMS AND CONDITIONS</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="footer-col">
+                  <h4>Help</h4>
+                  <ul>
+                    <li>
+                      <a href="https://www.realmadrid.com/en-US/bernabeu-stadium"
+                        >CONTACT US/a
+                      >
+                    </li>
+                    <li>
+                      <a href="https://www.realmadrid.com/en-US/schedule">Schedule</a>
+                    </li>
+                    <li>
+                      <a href="https://www.realmadrid.com/en-US/the-club/transparency"
+                        >FREQUENTLY ASKED QUESTIONS</a
+                      >
+                    </li>
+
+                  </ul>
+                </div>
+                <div class="footer-col">
+                  <h4>follow us</h4>
+                  <div class="social-links">
+                    <a href="https://www.facebook.com/RealMadrid/" target="_blank"
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
+                    <a href="https://twitter.com/realmadrid" target="_blank"
+                      ><i class="fab fa-twitter"></i
+                    ></a>
+                    <a href="https://www.instagram.com/realmadrid/" target="_blank"
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+          <!-- for the filtring part -->
+<script src="jsFile/index.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const shopNowButtons = document.querySelectorAll('.shopNowButton,.sale__btn');
+  
+        shopNowButtons.forEach(button => {
+          button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-product-id');
+            window.location.href = `productsPage.html?productId=${productId}`;
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
